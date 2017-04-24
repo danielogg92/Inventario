@@ -18,7 +18,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.danie.inventario.data.ProductContract;
 import com.example.danie.inventario.data.ProductContract.ProductEntry;
+
+import java.io.ByteArrayOutputStream;
 
 public class CatalogActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -30,6 +33,8 @@ public class CatalogActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+
+        getIntent();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -61,38 +66,16 @@ public class CatalogActivity extends AppCompatActivity implements
         getLoaderManager().initLoader(PRODUCT_LOADER, null, this);
     }
 
-    private void insertVRProduct() {
-        ContentValues values = new ContentValues();
-        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Daydream VR");
-        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER, "Google");
-        values.put(ProductEntry.COLUMN_PRODUCT_SELLPRICE, 179.9);
-        values.put(ProductEntry.COLUMN_PRODUCT_SALES, 0);
-        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 20);
-        values.put(ProductEntry.COLUMN_PRODUCT_PICTURE, R.drawable.vrheadset);
-
-        Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
-    }
-
-    private void insertHistoricProduct() {
-        ContentValues values = new ContentValues();
-        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Cast Iron Oven");
-        values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER, "Local Merchant");
-        values.put(ProductEntry.COLUMN_PRODUCT_SELLPRICE, 79.9);
-        values.put(ProductEntry.COLUMN_PRODUCT_SALES, 0);
-        values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 20);
-        values.put(ProductEntry.COLUMN_PRODUCT_PICTURE, R.drawable.dutchoven);
-
-        Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
-    }
-
     private void insertJetpackProduct() {
+        Uri jetpackThumbnailthumb = Uri.parse("android.resource://com.example.danie.inventario/"
+                + R.drawable.jetpack);
         ContentValues values = new ContentValues();
         values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Jetpack");
         values.put(ProductEntry.COLUMN_PRODUCT_SUPPLIER, "Local Merchant");
         values.put(ProductEntry.COLUMN_PRODUCT_SELLPRICE, 799.9);
         values.put(ProductEntry.COLUMN_PRODUCT_SALES, 0);
         values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 5);
-        values.put(ProductEntry.COLUMN_PRODUCT_PICTURE, R.drawable.jetpack);
+        values.put(ProductEntry.COLUMN_PRODUCT_THUMBNAIL, jetpackThumbnailthumb.toString());
 
         Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
     }
@@ -111,12 +94,6 @@ public class CatalogActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_insert_VR_data:
-                insertVRProduct();
-                return true;
-            case R.id.action_insert_cast_iron_oven_data:
-                insertHistoricProduct();
-                return true;
             case R.id.action_insert_jetpack_data:
                 insertJetpackProduct();
                 return true;
@@ -136,7 +113,7 @@ public class CatalogActivity extends AppCompatActivity implements
                 ProductEntry.COLUMN_PRODUCT_QUANTITY,
                 ProductEntry.COLUMN_PRODUCT_SALES,
                 ProductEntry.COLUMN_PRODUCT_SELLPRICE,
-                ProductEntry.COLUMN_PRODUCT_PICTURE};
+                ProductEntry.COLUMN_PRODUCT_THUMBNAIL};
 
         return new CursorLoader(this, ProductEntry.CONTENT_URI, projection, null, null, null);
     }

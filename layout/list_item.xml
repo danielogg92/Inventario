@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,54 +8,56 @@
 
     <TextView
         android:id="@+id/name"
-        android:text="PlaceHolder Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:text="PlaceHolder Name"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#2B3D4D"  />
+        android:textColor="#2B3D4D" />
 
     <TextView
         android:id="@+id/supplier"
-        android:text="PlaceHolder Supplier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
+        android:text="PlaceHolder Supplier"
         android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD"  />
+        android:textColor="#AEB6BD" />
 
     <TextView
         android:id="@+id/quantity"
-        android:text="Placeholder Quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
+        android:text="Placeholder Quantity"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#757575"  />
+        android:textColor="#757575" />
 
     <TextView
         android:id="@+id/sales"
-        android:text="Placeholder Sales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
+        android:text="Placeholder Sales"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#757575"/>
+        android:textColor="#757575" />
 
     <TextView
         android:id="@+id/sellprice"
-        android:text="Placeholder Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
+        android:text="Placeholder Price"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#757575"  />
+        android:textColor="#757575" />
 
-    <ImageView
-        android:id="@+id/product_thumbnail"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/quicksale_1off"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_upload_icon"/>
-
+        android:layout_margin="16sp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="@string/quicksale_1item" />
 
 </LinearLayout>

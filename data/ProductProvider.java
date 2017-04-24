@@ -7,9 +7,13 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.danie.inventario.data.ProductContract.ProductEntry;
+
+import java.sql.Blob;
 
 public class ProductProvider extends ContentProvider {
 
@@ -17,6 +21,7 @@ public class ProductProvider extends ContentProvider {
     private static final int PRODUCTS = 100;
     private static final int PRODUCT_ID = 101;
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+    private ProductDbHelper mDbHelper;
 
     static {
         sUriMatcher.addURI(ProductContract.CONTENT_AUTHORITY, ProductContract.PATH_PRODUCTS,
@@ -25,19 +30,20 @@ public class ProductProvider extends ContentProvider {
                 "/#", PRODUCT_ID);
     }
 
-    private ProductDbHelper mDbHelper;
-
     @Override
     public boolean onCreate() {
         mDbHelper = new ProductDbHelper(getContext());
         return true;
     }
 
+    @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
         SQLiteDatabase database = mDbHelper.getReadableDatabase();
+
         Cursor cursor;
+
         int match = sUriMatcher.match(uri);
         switch (match) {
             case PRODUCTS:
@@ -59,6 +65,7 @@ public class ProductProvider extends ContentProvider {
         return cursor;
     }
 
+    @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
         final int match = sUriMatcher.match(uri);
@@ -87,9 +94,14 @@ public class ProductProvider extends ContentProvider {
         }
 
         Integer stockQuantity = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_QUANTITY);
-        if (stockQuantity != null && stockQuantity <= 0) {
-            throw new IllegalArgumentException("Must buy at least 1 product");
+        if (stockQuantity == null || stockQuantity < 0) {
+            throw new IllegalArgumentException("Stock quantity must be greater than 0");
         }
+		
+		Integer sales = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_SALES);
+		if (sales != null && sales <0 ){
+			throw new IllegalArgumentException("Sales must be greater than 1");
+		}
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
@@ -135,9 +147,16 @@ public class ProductProvider extends ContentProvider {
             }
         }
 
+        if(values.containsKey(ProductEntry.COLUMN_PRODUCT_QUANTITY)){
+            int quantity = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_QUANTITY);
+            if (quantity <0 ) {
+                throw new IllegalArgumentException("Total quantity must 0 or more");
+            }
+        }
+
         if (values.containsKey(ProductEntry.COLUMN_PRODUCT_SALES)) {
             int sales = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_SALES);
-            if (sales <= 0) {
+            if (sales < 0) {
                 throw new IllegalArgumentException("Total sales must 0 or more");
             }
         }
@@ -189,6 +208,7 @@ public class ProductProvider extends ContentProvider {
         return rowsDeleted;
     }
 
+    @Nullable
     @Override
     public String getType(Uri uri) {
         final int match = sUriMatcher.match(uri);

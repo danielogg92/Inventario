@@ -13,6 +13,7 @@ public final class ProductContract {
     public static final String PATH_PRODUCTS = "products";
 
     public static final class ProductEntry implements BaseColumns {
+
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_PRODUCTS);
         public static final String CONTENT_LIST_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/"
@@ -27,7 +28,7 @@ public final class ProductContract {
         public final static String COLUMN_PRODUCT_SELLPRICE = "sellPrice";
         public final static String COLUMN_PRODUCT_QUANTITY = "stockQuantity";
         public final static String COLUMN_PRODUCT_SALES = "sales";
-        public final static String COLUMN_PRODUCT_PICTURE = "picture";
+        public final static String COLUMN_PRODUCT_THUMBNAIL = "thumbnail";
     }
 }
 

@@ -5,16 +5,6 @@
     tools:context=".CatalogActivity">
 
     <item
-        android:id="@+id/action_insert_VR_data"
-        android:title="@string/action_insert_VR_data"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_insert_cast_iron_oven_data"
-        android:title="@string/action_insert_historic_data"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_insert_jetpack_data"
         android:title="@string/action_insert_jetpack_data"
         app:showAsAction="never" />

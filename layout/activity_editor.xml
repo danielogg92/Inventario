@@ -9,139 +9,242 @@
     android:padding="@dimen/activity_margin"
     tools:context=".EditorActivity">
 
-    <!-- Overview category -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="@string/category_overview"
-            style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
         <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <!-- Name field -->
-            <EditText
-                android:id="@+id/edit_product_name"
-                android:hint="@string/hint_product_name"
-                android:inputType="textCapWords"
-                style="@style/EditorFieldStyle" />
-
-            <!-- Breed field -->
-            <EditText
-                android:id="@+id/edit_product_supplier"
-                android:hint="@string/hint_product_supplier"
-                android:inputType="textCapWords"
-                style="@style/EditorFieldStyle" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Stocktake category -->
-    <LinearLayout
-        android:id="@+id/container_stocktake"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="@string/category_sellprice"
-            style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
-        <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp">
-
-            <!-- Weight field -->
-            <EditText
-                android:id="@+id/edit_product_sellprice"
-                android:hint="@string/hint_product_sellprice"
-                android:inputType="numberDecimal"
-                style="@style/EditorFieldStyle" />
-
-            <!-- Units for weight ($) -->
+            <!-- Label -->
             <TextView
-                android:id="@+id/label_price_units"
-                android:text="@string/unit_product_price"
-                style="@style/EditorUnitsStyle"/>
-        </RelativeLayout>
-    </LinearLayout>
+                android:text="@string/category_overview"
+                style="@style/CategoryStyle" />
 
-    <!-- Stocktake category -->
-    <LinearLayout
-        android:id="@+id/container_buy_quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="@string/category_buyquantity"
-            style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
-        <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp">
-
-            <!-- Weight field -->
-            <EditText
-                android:id="@+id/edit_product_buy_quantity"
-                android:hint="@string/hint_product_buyquantity"
-                android:inputType="number"
-                style="@style/EditorFieldStyle" />
-
-            <!-- Units for weight (No.) -->
-            <TextView
-                android:id="@+id/label_product_units"
-                android:text="@string/unit_product_quantity"
-                style="@style/EditorUnitsStyle"/>
-        </RelativeLayout>
-    </LinearLayout>
-
-    <!-- Stocktake category -->
-    <LinearLayout
-        android:id="@+id/container_upload_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="@string/category_product_image"
-            style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
-        <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="@android:color/holo_green_light">
-
-            <!-- Button for Upload Image -->
-            <ImageView
-                android:id="@+id/product_image"
-                android:layout_width="wrap_content"
+            <!-- Input fields -->
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_upload_icon"/>
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="4dp"
+                android:orientation="vertical">
 
-        </RelativeLayout>
-    </LinearLayout>
+                <!-- Product Name field -->
+                <EditText
+                    android:id="@+id/edit_product_name"
+                    android:hint="@string/hint_product_name"
+                    android:inputType="textCapWords"
+                    style="@style/EditorFieldStyle" />
+
+                <!-- Product Supplier or Brand field -->
+                <EditText
+                    android:id="@+id/edit_product_supplier"
+                    android:hint="@string/hint_product_supplier"
+                    android:inputType="textCapWords"
+                    style="@style/EditorFieldStyle" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Stocktake category -->
+        <LinearLayout
+            android:id="@+id/container_stocktake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/category_sellprice"
+                style="@style/CategoryStyle" />
+
+            <!-- Input fields -->
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="4dp">
+
+                <!-- Product Sell Price field ($) -->
+                <EditText
+                    android:id="@+id/edit_product_sellprice"
+                    android:hint="@string/hint_product_sellprice"
+                    android:inputType="numberDecimal"
+                    style="@style/EditorFieldStyle" />
+
+                <!-- Units for Quantity -->
+                <TextView
+                    android:id="@+id/label_price_units"
+                    android:text="@string/unit_product_price"
+                    style="@style/EditorUnitsStyle"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Stocktake category -->
+        <LinearLayout
+            android:id="@+id/container_buy_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/category_buyquantity"
+                style="@style/CategoryStyle" />
+
+            <!-- Input fields -->
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="4dp">
+
+                <!-- Buy Quantity field -->
+                <EditText
+                    android:id="@+id/edit_product_buy_quantity"
+                    android:hint="@string/hint_product_buyquantity"
+                    android:inputType="number"
+                    style="@style/EditorFieldStyle" />
+
+                <!-- Units for products (No.) -->
+                <TextView
+                    android:id="@+id/label_product_units"
+                    android:text="@string/unit_product_quantity"
+                    style="@style/EditorUnitsStyle"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Quantity in Stock category -->
+        <LinearLayout
+            android:id="@+id/quantity_in_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/quantity_instock"
+                style="@style/CategoryStyle" />
+
+            <!-- Input fields -->
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="4dp"
+                android:addStatesFromChildren="false"
+                android:gravity="bottom">
+
+                <!-- Buy Quantity field -->
+                <TextView
+                    android:id="@+id/quantity_instock_integer"
+                    android:text="@string/placeholder_integer"
+                    android:layout_alignBaseline="@+id/quantity_in_stock"
+                    style="@style/StocktakeUnitsStyle"
+                    tools:ignore="NotSibling" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Sales Quantity to Date category -->
+        <LinearLayout
+            android:id="@+id/quantity_total_sales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/quantity_sales_to_date"
+                style="@style/CategoryStyle" />
+
+            <!-- Input fields -->
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="4dp"
+                android:addStatesFromChildren="false"
+                android:gravity="bottom">
+
+                <!-- Buy Quantity field -->
+                <TextView
+                    android:id="@+id/quantity_sales_integer"
+                    android:text="@string/placeholder_integer"
+                    android:layout_alignBaseline="@+id/quantity_total_sales"
+                    style="@style/StocktakeUnitsStyle"
+                    tools:ignore="NotSibling"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <!-- Picture category -->
+        <LinearLayout
+            android:id="@+id/container_upload_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/category_product_image"
+                style="@style/CategoryStyle" />
+
+            <!-- Input fields -->
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="4dp"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@android:color/holo_green_light">
+
+                <!-- Button for Upload Image -->
+                <ImageView
+                    android:id="@+id/product_image"
+                    android:layout_width="144dp"
+                    android:layout_height="144dp"
+                    android:paddingTop="16sp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="centerInside"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16sp">
+
+            <Button
+                android:id="@+id/buy_stock_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/buy_stock_button"
+                style="@style/CategoryStyle"/>
+
+            <Button
+                android:id="@+id/sell_product_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sell_product_button"
+                style="@style/CategoryStyle"/>
+
+            <Button
+                android:id="@+id/upload_pict_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/upload_picture_button"
+                style="@style/CategoryStyle"/>
+
+
+        </LinearLayout>
+
+
+
+
+
 
 </LinearLayout>
